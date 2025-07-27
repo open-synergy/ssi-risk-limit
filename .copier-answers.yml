@@ -1,0 +1,24 @@
+# Do NOT update manually; changes here will be overwritten by Copier
+_commit: c749e42
+_src_path: gh:open-synergy/ssi-addons-repo-template
+ci: Travis
+convert_readme_fragments_to_markdown: false
+dependency_installation_mode: PIP
+enable_checklog_odoo: false
+generate_requirements_txt: true
+github_enable_stale_action: false
+include_wkhtmltopdf: false
+odoo_test_flavor: OCB
+odoo_version: 14.0
+org_name: PT. Simetri Sinergi Indonesia
+org_slug: open-synergy
+rebel_module_groups: []
+repo_description: ''
+repo_name: ssi-risk-limit
+repo_slug: ssi-risk-limit
+repo_website: https://github.com/open-synergy/ssi-risk-limit
+travis_apt_packages: []
+travis_apt_sources: []
+use_pyproject_toml: false
+use_ruff: false
+
