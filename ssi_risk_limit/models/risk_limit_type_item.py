@@ -5,9 +5,9 @@
 from odoo import fields, models
 
 
-class RiskLimitTypeCompositeItem(models.Model):
-    _name = "risk_limit_type.composite_item"
-    _description = "Risk Limit Type - Composite sItem"
+class RiskLimitTypeItem(models.Model):
+    _name = "risk_limit_type.item"
+    _description = "Risk Limit Type - Item"
 
     type_id = fields.Many2one(
         string="Risk Limit Type",
@@ -15,13 +15,10 @@ class RiskLimitTypeCompositeItem(models.Model):
         required=True,
         ondelete="cascade",
     )
-    item_ids = fields.Many2many(
-        string="Risk Limit Items",
+    item_id = fields.Many2one(
+        string="Risk Limit Item",
         comodel_name="risk_limit_item",
         required=True,
-        relation="rel_risk_limit_type_composite",
-        column1="composite_item_id",
-        column2="item_id",
     )
     currency_id = fields.Many2one(
         string="Currency",
