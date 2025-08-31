@@ -10,6 +10,7 @@ from . import (
     risk_limit_assignment,
     risk_limit_batch_assignment,
     risk_limit_assignment_detail,
+    risk_limit_assignment_composite_detail,
     partner_risk_limit,
     res_partner,
 )
