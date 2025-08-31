@@ -14,6 +14,7 @@
         "ssi_transaction_confirm_mixin",
         "ssi_transaction_done_mixin",
         "ssi_transaction_cancel_mixin",
+        "ssi_transaction_terminate_mixin",
         "ssi_financial_accounting",
         "ssi_partner",
         "ssi_res_partner_m2o_configurator_mixin",
