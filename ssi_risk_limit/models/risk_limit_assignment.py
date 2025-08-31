@@ -179,6 +179,7 @@ class RiskLimitAssignment(models.Model):
                     "item_id": item.item_id.id,
                     "currency_id": item.currency_id.id,
                     "amount": item.default_amount,
+                    "restrict_single": item.restrict_single,
                 }
             )
 

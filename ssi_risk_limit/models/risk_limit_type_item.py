@@ -20,6 +20,10 @@ class RiskLimitTypeItem(models.Model):
         comodel_name="risk_limit_item",
         required=True,
     )
+    restrict_single = fields.Boolean(
+        string="Restrict Single Risk",
+        default=False,
+    )
     currency_id = fields.Many2one(
         string="Currency",
         comodel_name="res.currency",

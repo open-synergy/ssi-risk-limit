@@ -22,6 +22,10 @@ class RiskLimitAssignment(models.Model):
         comodel_name="risk_limit_item",
         required=True,
     )
+    restrict_single = fields.Boolean(
+        string="Restrict Single Risk",
+        default=False,
+    )
     currency_id = fields.Many2one(
         string="Currency",
         comodel_name="res.currency",
@@ -85,7 +89,7 @@ class RiskLimitAssignment(models.Model):
     )
     def constrains_residual(self):
         for record in self.sudo():
-            if record.amount_residual < 0.0:
+            if record.amount_residual < 0.0 and record.restrict_single:
                 error_message = """
                 Document Type: %s
                 Context: Risk limit usage

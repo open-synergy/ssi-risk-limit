@@ -139,6 +139,10 @@
                             <field name="detail_ids">
                                 <tree editable="top">
                                     <field name="item_id" />
+                                    <field
+                                        name="restrict_single"
+                                        widget="boolean_toggle"
+                                    />
                                     <field name="currency_id" />
                                     <field name="amount" />
                                     <field name="amount_usage" />
