@@ -4,12 +4,11 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools.safe_eval import safe_eval
 
 
-class RiskLimitAssignment(models.Model):
-    _name = "risk_limit_assignment.detail"
-    _description = "Risk Limit Assignment"
+class RiskLimitAssignmentCompositeDetail(models.Model):
+    _name = "risk_limit_assignment.composite_detail"
+    _description = "Risk Limit Assignment - Composite Detail"
 
     assignment_id = fields.Many2one(
         string="# Assignment",
@@ -17,14 +16,22 @@ class RiskLimitAssignment(models.Model):
         required=True,
         ondelete="cascade",
     )
-    item_id = fields.Many2one(
-        string="Risk Limit Item",
-        comodel_name="risk_limit_item",
-        required=True,
+    detail_ids = fields.Many2many(
+        string="Risk Limit Assignment - Detail",
+        comodel_name="risk_limit_assignment.detail",
+        relation="rel_risk_assignment_detail_composite_2_detail",
+        column1="composite_detail_id",
+        column2="detail_id",
+        compute="_compute_detail_ids",
+        store=True,
+        compute_sudo=True,
     )
-    restrict_single = fields.Boolean(
-        string="Restrict Single Risk",
-        default=False,
+    item_ids = fields.Many2many(
+        string="Risk Limit Items",
+        comodel_name="risk_limit_item",
+        relation="rel_risk_assignment_detail_composite_2_item",
+        column1="detail_id",
+        column2="item_id",
     )
     currency_id = fields.Many2one(
         string="Currency",
@@ -51,54 +58,51 @@ class RiskLimitAssignment(models.Model):
         store=True,
     )
 
-    @api.depends()
+    @api.depends(
+        "item_ids",
+    )
+    def _compute_detail_ids(self):
+        Detail = self.env["risk_limit_assignment.detail"]
+        for record in self:
+            result = []
+            if record.item_ids:
+                criteria = [
+                    ("assignment_id", "=", record.assignment_id.id),
+                    ("item_id", "in", record.item_ids.ids),
+                ]
+                result = Detail.search(criteria).ids
+            record.detail_ids = result
+
+    @api.depends(
+        "detail_ids",
+        "detail_ids.amount_usage",
+    )
     def _compute_amount(self):
         for record in self:
             amount_usage = amount_residual = 0.0
 
-            if record.item_id:
-                model_name = record.item_id.model
-                domain = safe_eval(record.item_id.domain, {})
-                domain_result = self.env[model_name].search(domain)
-                partner_result = self.env[model_name].search(
-                    [
-                        (
-                            record.item_id.partner_field_id.name,
-                            "=",
-                            self.assignment_id.partner_id.id,
-                        ),
-                    ]
-                )
-                final_result = domain_result & partner_result
-
-                result = self.env[model_name].read_group(
-                    domain=[("id", "in", final_result.ids)],
-                    fields=[record.item_id.amount_field_id.name],
-                    groupby=[],
-                )
-
-                if result[0]["__count"] > 0:
-                    amount_usage = result[0][record.item_id.amount_field_id.name]
+            for detail in record.detail_ids:
+                amount_usage += detail.amount_usage
 
             amount_residual = record.amount - amount_usage
-            record.amount_usage = amount_usage
+
             record.amount_residual = amount_residual
+            record.amount_usage = amount_usage
 
     @api.constrains(
         "amount_residual",
     )
     def constrains_residual(self):
         for record in self.sudo():
-            if record.amount_residual < 0.0 and record.restrict_single:
+            if record.amount_residual < 0.0:
                 error_message = """
                 Document Type: %s
-                Context: Risk limit usage
+                Context: Risk limit composite usage
                 Database ID: %s
-                Problem: Risk limit %s reached
+                Problem: Compososite Risk limit reached
                 Solution: Resolve limit usage or adjust risk limit
                 """ % (
                     record.assignment_id._description,
                     record.assignment_id.id,
-                    record.item_id.name,
                 )
                 raise UserError(_(error_message))

@@ -107,6 +107,12 @@ class RiskLimitAssignment(models.Model):
         inverse_name="assignment_id",
         readonly=True,
     )
+    composite_detail_ids = fields.One2many(
+        string="Composite Details",
+        comodel_name="risk_limit_assignment.composite_detail",
+        inverse_name="assignment_id",
+        readonly=True,
+    )
 
     @api.depends("type_id")
     def _compute_allowed_partner_ids(self):
@@ -165,11 +171,24 @@ class RiskLimitAssignment(models.Model):
         self.ensure_one()
         self.detail_ids.unlink()
         Detail = self.env["risk_limit_assignment.detail"]
+        CompositeDetail = self.env["risk_limit_assignment.composite_detail"]
         for item in self.type_id.item_ids:
             Detail.create(
                 {
                     "assignment_id": self.id,
                     "item_id": item.item_id.id,
+                    "currency_id": item.currency_id.id,
+                    "amount": item.default_amount,
+                    "restrict_single": item.restrict_single,
+                }
+            )
+
+        self.composite_detail_ids.unlink()
+        for item in self.type_id.composite_item_ids:
+            CompositeDetail.create(
+                {
+                    "assignment_id": self.id,
+                    "item_ids": [(6, 0, item.item_ids.ids)],
                     "currency_id": item.currency_id.id,
                     "amount": item.default_amount,
                 }

@@ -21,3 +21,8 @@ class RiskLimitType(models.Model):
         comodel_name="risk_limit_type.item",
         inverse_name="type_id",
     )
+    composite_item_ids = fields.One2many(
+        string="Composite Items",
+        comodel_name="risk_limit_type.composite_item",
+        inverse_name="type_id",
+    )
