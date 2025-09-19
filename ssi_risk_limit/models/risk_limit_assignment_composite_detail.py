@@ -95,8 +95,9 @@ class RiskLimitAssignmentCompositeDetail(models.Model):
         "amount_residual",
     )
     def constrains_residual(self):
+        soft_warning = self.env.context.get("soft_warning", False)
         for record in self.sudo():
-            if record.amount_residual < 0.0:
+            if record.amount_residual < 0.0 and not soft_warning:
                 error_message = """
                 Document Type: %s
                 Context: Risk limit composite usage
