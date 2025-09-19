@@ -308,6 +308,17 @@ msgid "Composite Items"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model_terms:ir.ui.view,arch_db:ssi_risk_limit.res_partner_view_form
+msgid "Composite Limit"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner__composite_risk_limit_ids
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_users__composite_risk_limit_ids
+msgid "Composite Risk Limits"
+msgstr ""
+
+#. module: ssi_risk_limit
 #: model:ir.model.fields,help:ssi_risk_limit.field_risk_limit_assignment__confirm_ok
 #: model:ir.model.fields,help:ssi_risk_limit.field_risk_limit_batch_assignment__confirm_ok
 msgid ""
@@ -545,6 +556,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_type_composite_item__write_date
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_type_item__write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model_terms:ir.ui.view,arch_db:ssi_risk_limit.res_partner_view_form
+msgid "Limit"
 msgstr ""
 
 #. module: ssi_risk_limit
