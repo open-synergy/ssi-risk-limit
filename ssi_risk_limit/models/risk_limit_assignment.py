@@ -106,12 +106,22 @@ class RiskLimitAssignment(models.Model):
         comodel_name="risk_limit_assignment.detail",
         inverse_name="assignment_id",
         readonly=True,
+        states={
+            "draft": [
+                ("readonly", False),
+            ],
+        },
     )
     composite_detail_ids = fields.One2many(
         string="Composite Details",
         comodel_name="risk_limit_assignment.composite_detail",
         inverse_name="assignment_id",
         readonly=True,
+        states={
+            "draft": [
+                ("readonly", False),
+            ],
+        },
     )
 
     @api.depends("type_id")

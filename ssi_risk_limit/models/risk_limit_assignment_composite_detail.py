@@ -32,11 +32,13 @@ class RiskLimitAssignmentCompositeDetail(models.Model):
         relation="rel_risk_assignment_detail_composite_2_item",
         column1="detail_id",
         column2="item_id",
+        readonly=True,
     )
     currency_id = fields.Many2one(
         string="Currency",
         comodel_name="res.currency",
         required=True,
+        readonly=True,
     )
     amount = fields.Monetary(
         string="Limit Amount",

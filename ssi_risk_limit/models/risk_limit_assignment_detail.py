@@ -21,15 +21,18 @@ class RiskLimitAssignment(models.Model):
         string="Risk Limit Item",
         comodel_name="risk_limit_item",
         required=True,
+        readonly=True,
     )
     restrict_single = fields.Boolean(
         string="Restrict Single Risk",
         default=False,
+        readonly=True,
     )
     currency_id = fields.Many2one(
         string="Currency",
         comodel_name="res.currency",
         required=True,
+        readonly=True,
     )
     amount = fields.Monetary(
         string="Limit Amount",
