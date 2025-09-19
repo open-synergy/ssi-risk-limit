@@ -18,7 +18,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[ssi_risk_limit](ssi_risk_limit/) | 14.0.2.1.0 |  | Risk Limit
+[ssi_risk_limit](ssi_risk_limit/) | 14.0.2.2.0 |  | Risk Limit
 
 [//]: # (end addons)
 
