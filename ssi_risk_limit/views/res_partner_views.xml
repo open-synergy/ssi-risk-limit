@@ -18,9 +18,20 @@
                 <group name="risk_limit" colspan="4" col="2">
                     <field name="risk_limit_assignment_id" />
                 </group>
+                <separator string="Limit" />
                 <field name="risk_limit_ids">
                     <tree>
                         <field name="item_id" />
+                        <field name="currency_id" />
+                        <field name="amount" />
+                        <field name="amount_usage" />
+                        <field name="amount_residual" />
+                    </tree>
+                </field>
+                <separator string="Composite Limit" />
+                  <field name="composite_risk_limit_ids">
+                    <tree>
+                        <field name="item_ids" widget="many2many_tags" />
                         <field name="currency_id" />
                         <field name="amount" />
                         <field name="amount_usage" />
