@@ -64,7 +64,7 @@
             model="ir.model.access"
         >
             <field name="name">risk_limit_assignment.composite_detail - user</field>
-            <field name="model_id" ref="model_risk_limit_assignment_detail" />
+            <field name="model_id" ref="model_risk_limit_assignment_composite_detail" />
             <field
                 name="group_id"
                 ref="ssi_risk_limit.risk_limit_assignment_user_group"
