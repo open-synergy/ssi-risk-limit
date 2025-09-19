@@ -18,6 +18,13 @@ class ResPartner(models.Model):
         store=False,
         compute_sudo=True,
     )
+    composite_risk_limit_ids = fields.Many2many(
+        string="Composite Risk Limits",
+        comodel_name="risk_limit_assignment.composite_detail",
+        compute="_compute_composite_risk_limit_ids",
+        store=False,
+        compute_sudo=True,
+    )
     risk_limit_assignment_ids = fields.One2many(
         string="Risk Limit Assignments",
         comodel_name="risk_limit_assignment",
@@ -52,3 +59,13 @@ class ResPartner(models.Model):
             if record.risk_limit_assignment_id:
                 result = record.risk_limit_assignment_id.detail_ids.ids
             record.risk_limit_ids = result
+
+    @api.depends(
+        "risk_limit_assignment_id",
+    )
+    def _compute_composite_risk_limit_ids(self):
+        for record in self:
+            result = []
+            if record.risk_limit_assignment_id:
+                result = record.risk_limit_assignment_id.composite_detail_ids.ids
+            record.composite_risk_limit_ids = result
