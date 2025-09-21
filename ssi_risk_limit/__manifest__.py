@@ -20,6 +20,8 @@
         "ssi_res_partner_m2o_configurator_mixin",
         "ssi_m2o_configurator_mixin",
         "ssi_partner",
+        "base_automation",
+        "queue_job_batch",
     ],
     "data": [
         "security/ir_module_category/risk_limit_assignment_module_category.xml",
@@ -42,6 +44,8 @@
         "sequence_template/risk_limit_batch_assignment.xml",
         "approval_template/risk_limit_assignment.xml",
         "approval_template/risk_limit_batch_assignment.xml",
+        "data/ir_actions_server_data.xml",
+        "data/base_automation_data.xml",
         "menu.xml",
         "views/risk_limit_item_views.xml",
         "views/risk_limit_type_views.xml",

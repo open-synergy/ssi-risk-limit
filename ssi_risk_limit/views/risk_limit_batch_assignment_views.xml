@@ -88,6 +88,58 @@
                             <field name="partner_ids" />
                         </page>
                         <page name="assignment" string="Assignments">
+                            <group name="queue_1" colspan="4" col="2">
+                                <field name="queue_job_batch_id" string="Batch" />
+                                <field name="queue_job_batch_state" string="State" />
+                            </group>
+                            <button
+                                name="action_confirm_assignment"
+                                string="Confirm"
+                                type="object"
+                                class="oe_highlight"
+                                style="margin-right:4px"
+                                attrs="{'invisible':[('queue_job_batch_id','!=',False)]}"
+                            />
+                            <button
+                                name="action_approve_assignment"
+                                string="Approve"
+                                type="object"
+                                class="oe_highlight"
+                                style="margin-right:4px"
+                                attrs="{'invisible':[('queue_job_batch_id','!=',False)]}"
+                            />
+                            <button
+                                name="action_reject_assignment"
+                                string="Reject"
+                                type="object"
+                                class="oe_highlight"
+                                style="margin-right:4px"
+                                attrs="{'invisible':[('queue_job_batch_id','!=',False)]}"
+                            />
+                            <button
+                                name="action_finish_assignment"
+                                string="Finish"
+                                type="object"
+                                class="oe_highlight"
+                                style="margin-right:4px"
+                                attrs="{'invisible':[('queue_job_batch_id','!=',False)]}"
+                            />
+                            <button
+                                name="action_cancel_assignment"
+                                string="Cancel"
+                                type="object"
+                                class="oe_highlight"
+                                style="margin-right:4px"
+                                attrs="{'invisible':[('queue_job_batch_id','!=',False)]}"
+                            />
+                            <button
+                                name="action_restart_assignment"
+                                string="Restart"
+                                type="object"
+                                class="oe_highlight"
+                                style="margin-right:4px"
+                                attrs="{'invisible':[('queue_job_batch_id','!=',False)]}"
+                            />
                             <field name="risk_limit_assignment_ids" />
                         </page>
                     </xpath>
