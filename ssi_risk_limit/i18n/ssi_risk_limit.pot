@@ -154,6 +154,11 @@ msgid "Approvals"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_batch_assignment_view_form
+msgid "Approve"
+msgstr ""
+
+#. module: ssi_risk_limit
 #: model:ir.model.fields,help:ssi_risk_limit.field_risk_limit_assignment__approve_ok
 #: model:ir.model.fields,help:ssi_risk_limit.field_risk_limit_batch_assignment__approve_ok
 msgid ""
@@ -179,6 +184,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_item__message_attachment_count
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_type__message_attachment_count
 msgid "Attachment Count"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_batch_assignment_view_form
+msgid "Batch"
 msgstr ""
 
 #. module: ssi_risk_limit
@@ -238,6 +248,11 @@ msgstr ""
 #. module: ssi_risk_limit
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__terminate_ok
 msgid "Can Terminate"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_batch_assignment_view_form
+msgid "Cancel"
 msgstr ""
 
 #. module: ssi_risk_limit
@@ -316,6 +331,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner__composite_risk_limit_ids
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_res_users__composite_risk_limit_ids
 msgid "Composite Risk Limits"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_batch_assignment_view_form
+msgid "Confirm"
 msgstr ""
 
 #. module: ssi_risk_limit
@@ -415,6 +435,11 @@ msgid ""
 "Done policy\n"
 "\n"
 "* If active user can see and execute 'Done' button"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_batch_assignment_view_form
+msgid "Finish"
 msgstr ""
 
 #. module: ssi_risk_limit
@@ -800,8 +825,28 @@ msgid "Policy Template"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_batch_assignment__queue_job_batch_id
+msgid "Queue Job Batch"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_batch_assignment__queue_job_batch_state
+msgid "Queue Job Batch State"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_batch_assignment__queue_job_ids
+msgid "Queue Jobs"
+msgstr ""
+
+#. module: ssi_risk_limit
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_item__model_id
 msgid "Referenced Model"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_batch_assignment_view_form
+msgid "Reject"
 msgstr ""
 
 #. module: ssi_risk_limit
@@ -817,6 +862,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__rejected
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_batch_assignment__rejected
 msgid "Rejected"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model:base.automation,name:ssi_risk_limit.cron_remove_queue_batch_from_batch_limit_assignment
+#: model:ir.actions.server,name:ssi_risk_limit.action_remove_queue_batch_from_batch_limit_assignment
+msgid "Remove Queue Batch From Batch Risk Limit Assignment"
 msgstr ""
 
 #. module: ssi_risk_limit
@@ -838,6 +889,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_item__activity_user_id
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_type__activity_user_id
 msgid "Responsible User"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_batch_assignment_view_form
+msgid "Restart"
 msgstr ""
 
 #. module: ssi_risk_limit
@@ -987,6 +1043,7 @@ msgstr ""
 #. module: ssi_risk_limit
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__state
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_batch_assignment__state
+#: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_batch_assignment_view_form
 msgid "State"
 msgstr ""
 
