@@ -49,6 +49,7 @@ class CreateRiskLimitAssignment(models.TransientModel):
                         }
                     )
                     risk_limit_assignment = RiskLimitAssignment.create(data)
+                    risk_limit_assignment.action_compute_item()
                     risk_limit_assignment_ids.append(risk_limit_assignment.id)
                     break
         # Open the created evaluations
