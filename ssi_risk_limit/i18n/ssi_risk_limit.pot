@@ -251,6 +251,7 @@ msgid "Can Terminate"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model_terms:ir.ui.view,arch_db:ssi_risk_limit.create_risk_limit_assignment_view_form
 #: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_batch_assignment_view_form
 msgid "Cancel"
 msgstr ""
@@ -334,6 +335,7 @@ msgid "Composite Risk Limits"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model_terms:ir.ui.view,arch_db:ssi_risk_limit.create_risk_limit_assignment_view_form
 #: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_batch_assignment_view_form
 msgid "Confirm"
 msgstr ""
@@ -355,6 +357,13 @@ msgid "Contact"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:ir.actions.act_window,name:ssi_risk_limit.create_risk_limit_assignment_action
+#: model:ir.model,name:ssi_risk_limit.model_create_risk_limit_assignment
+msgid "Create Risk Limit Assignment"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment__create_uid
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_partner_risk_limit__create_uid
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__create_uid
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_composite_detail__create_uid
@@ -368,6 +377,7 @@ msgid "Created by"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment__create_date
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_partner_risk_limit__create_date
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__create_date
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_composite_detail__create_date
@@ -410,6 +420,7 @@ msgid "Details"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment__display_name
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_partner_risk_limit__display_name
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner__display_name
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__display_name
@@ -435,6 +446,11 @@ msgid ""
 "Done policy\n"
 "\n"
 "* If active user can see and execute 'Done' button"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model_terms:ir.ui.view,arch_db:ssi_risk_limit.create_risk_limit_assignment_view_form
+msgid "Evaluate Partner"
 msgstr ""
 
 #. module: ssi_risk_limit
@@ -475,6 +491,7 @@ msgid "Font awesome icon e.g. fa-tasks"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment__id
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_partner_risk_limit__id
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner__id
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__id
@@ -544,6 +561,7 @@ msgid "Items"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment____last_update
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_partner_risk_limit____last_update
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner____last_update
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment____last_update
@@ -558,6 +576,7 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment__write_uid
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_partner_risk_limit__write_uid
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__write_uid
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_composite_detail__write_uid
@@ -571,6 +590,7 @@ msgid "Last Updated by"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment__write_date
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_partner_risk_limit__write_date
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__write_date
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_composite_detail__write_date
@@ -780,6 +800,7 @@ msgid "Number of unread messages"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment__partner_ids
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__partner_id
 #: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_assignment_view_search
 msgid "Partner"
