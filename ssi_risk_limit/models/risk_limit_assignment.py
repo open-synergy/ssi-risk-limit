@@ -170,11 +170,11 @@ class RiskLimitAssignment(models.Model):
                 raise UserError(_(error_message))
 
     def action_compute_item(self):
-        for record in self.sudo():
+        for record in self.sudo().with_context(soft_warning=True):
             record._compute_item()
 
     def action_compute_amount(self):
-        for record in self.sudo():
+        for record in self.sudo().with_context(soft_warning=True):
             record._compute_amount()
 
     def _compute_item(self):
