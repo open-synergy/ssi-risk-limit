@@ -207,7 +207,10 @@ class RiskLimitAssignment(models.Model):
     def _compute_amount(self):
         self.ensure_one()
         for detail in self.detail_ids:
-            detail._compute_amount()
+            detail.with_context(soft_warning=True)._compute_amount()
+
+        for composite_detail in self.composite_detail_ids:
+            composite_detail.with_context(soft_warning=True)._compute_amount()
 
     @api.model
     def _get_policy_field(self):
