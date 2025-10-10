@@ -49,3 +49,17 @@ class RiskLimitTypeCompositeItem(models.Model):
         required=True,
         currency_field="currency_id",
     )
+
+    def get_amount(self, partner):
+        self.ensure_one()
+        result = self.default_amount
+        ceriteria = [
+            ("partner_id", "=", partner.id),
+            ("composite_detail_id", "=", self.id),
+        ]
+        detail = self.env["res_partner.default_risk_limit_composite_detail"].search(
+            ceriteria, limit=1
+        )
+        if detail:
+            result = detail.amount
+        return result
