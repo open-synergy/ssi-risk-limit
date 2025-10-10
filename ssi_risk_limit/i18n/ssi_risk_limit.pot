@@ -126,6 +126,8 @@ msgid "Allowed Policy Templates"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_composite_detail__amount
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_detail__amount
 #: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_assignment_view_form
 msgid "Amount"
 msgstr ""
@@ -365,6 +367,8 @@ msgstr ""
 #. module: ssi_risk_limit
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment__create_uid
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_partner_risk_limit__create_uid
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_composite_detail__create_uid
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_detail__create_uid
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__create_uid
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_composite_detail__create_uid
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_detail__create_uid
@@ -379,6 +383,8 @@ msgstr ""
 #. module: ssi_risk_limit
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment__create_date
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_partner_risk_limit__create_date
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_composite_detail__create_date
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_detail__create_date
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__create_date
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_composite_detail__create_date
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_detail__create_date
@@ -392,6 +398,8 @@ msgstr ""
 
 #. module: ssi_risk_limit
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_partner_risk_limit__currency_id
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_composite_detail__currency_id
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_detail__currency_id
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_composite_detail__currency_id
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_detail__currency_id
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_type_composite_item__currency_id
@@ -414,6 +422,29 @@ msgid "Default Amount"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner__default_risk_limit_composite_detail_ids
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_users__default_risk_limit_composite_detail_ids
+msgid "Default Risk Limit Composite Details"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner__default_risk_limit_detail_ids
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_users__default_risk_limit_detail_ids
+msgid "Default Risk Limit Details"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner__default_risk_limit_type_id
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_users__default_risk_limit_type_id
+msgid "Default Risk Limit Type"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model_terms:ir.ui.view,arch_db:ssi_risk_limit.res_partner_view_form
+msgid "Default Risk Limits"
+msgstr ""
+
+#. module: ssi_risk_limit
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__detail_ids
 #: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_assignment_view_form
 msgid "Details"
@@ -423,6 +454,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment__display_name
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_partner_risk_limit__display_name
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner__display_name
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_composite_detail__display_name
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_detail__display_name
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__display_name
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_composite_detail__display_name
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_detail__display_name
@@ -494,6 +527,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment__id
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_partner_risk_limit__id
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner__id
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_composite_detail__id
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_detail__id
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__id
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_composite_detail__id
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_detail__id
@@ -550,11 +585,13 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_detail__item_id
 #: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_assignment_view_form
 msgid "Item"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_composite_detail__item_ids
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_type__item_ids
 #: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_type_view_form
 msgid "Items"
@@ -564,6 +601,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment____last_update
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_partner_risk_limit____last_update
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner____last_update
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_composite_detail____last_update
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_detail____last_update
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment____last_update
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_composite_detail____last_update
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_detail____last_update
@@ -578,6 +617,8 @@ msgstr ""
 #. module: ssi_risk_limit
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment__write_uid
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_partner_risk_limit__write_uid
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_composite_detail__write_uid
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_detail__write_uid
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__write_uid
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_composite_detail__write_uid
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_detail__write_uid
@@ -592,6 +633,8 @@ msgstr ""
 #. module: ssi_risk_limit
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment__write_date
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_partner_risk_limit__write_date
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_composite_detail__write_date
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_detail__write_date
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__write_date
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_composite_detail__write_date
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_detail__write_date
@@ -801,14 +844,26 @@ msgstr ""
 
 #. module: ssi_risk_limit
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_create_risk_limit_assignment__partner_ids
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_composite_detail__partner_id
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_detail__partner_id
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__partner_id
 #: model_terms:ir.ui.view,arch_db:ssi_risk_limit.risk_limit_assignment_view_search
 msgid "Partner"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:ir.model,name:ssi_risk_limit.model_res_partner_default_risk_limit_detail
+msgid "Partner - Default Risk Limit Detail"
+msgstr ""
+
+#. module: ssi_risk_limit
 #: model:ir.model,name:ssi_risk_limit.model_partner_risk_limit
 msgid "Partner - Risk Limit"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model:ir.model,name:ssi_risk_limit.model_res_partner_default_risk_limit_composite_detail
+msgid "Partner - Risk Limit Composite Detail"
 msgstr ""
 
 #. module: ssi_risk_limit
@@ -936,6 +991,7 @@ msgid ""
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_detail__restrict_single
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment_detail__restrict_single
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_type_item__restrict_single
 msgid "Restrict Single Risk"
@@ -950,7 +1006,13 @@ msgstr ""
 #. module: ssi_risk_limit
 #: model:ir.ui.menu,name:ssi_risk_limit.menu_risk_limit_config
 #: model:ir.ui.menu,name:ssi_risk_limit.menu_risk_limit_header
+#: model_terms:ir.ui.view,arch_db:ssi_risk_limit.res_partner_view_form
 msgid "Risk Limit"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_composite_detail__composite_detail_id
+msgid "Risk Limit - Composite Item"
 msgstr ""
 
 #. module: ssi_risk_limit
@@ -1025,6 +1087,7 @@ msgstr ""
 
 #. module: ssi_risk_limit
 #: model:ir.model,name:ssi_risk_limit.model_risk_limit_type_item
+#: model:ir.model.fields,field_description:ssi_risk_limit.field_res_partner_default_risk_limit_detail__detail_id
 msgid "Risk Limit Type - Item"
 msgstr ""
 
