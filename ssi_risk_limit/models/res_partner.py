@@ -38,6 +38,22 @@ class ResPartner(models.Model):
         compute_sudo=True,
     )
 
+    # default risk limit
+    default_risk_limit_type_id = fields.Many2one(
+        string="Default Risk Limit Type",
+        comodel_name="risk_limit_type",
+    )
+    default_risk_limit_detail_ids = fields.One2many(
+        string="Default Risk Limit Details",
+        comodel_name="res_partner.default_risk_limit_detail",
+        inverse_name="partner_id",
+    )
+    default_risk_limit_composite_detail_ids = fields.One2many(
+        string="Default Risk Limit Composite Details",
+        comodel_name="res_partner.default_risk_limit_composite_detail",
+        inverse_name="partner_id",
+    )
+
     @api.depends(
         "risk_limit_assignment_ids",
         "risk_limit_assignment_ids.partner_id",
@@ -69,3 +85,30 @@ class ResPartner(models.Model):
             if record.risk_limit_assignment_id:
                 result = record.risk_limit_assignment_id.composite_detail_ids.ids
             record.composite_risk_limit_ids = result
+
+    def action_reload_risk_limit(self):
+        for record in self.sudo():
+            record._reload_risk_limit()
+
+    def _reload_risk_limit(self):
+        self.ensure_one()
+        risk_limit_type = self.default_risk_limit_type_id
+        self.default_risk_limit_detail_ids.unlink()
+        self.default_risk_limit_composite_detail_ids.unlink()
+        if risk_limit_type:
+            for detail in risk_limit_type.item_ids:
+                data = {
+                    "detail_id": detail.id,
+                    "partner_id": self.id,
+                    "currency_id": detail.currency_id.id,
+                    "amount": detail.default_amount,
+                }
+                self.env["res_partner.default_risk_limit_detail"].create(data)
+            for composite_detail in risk_limit_type.composite_item_ids:
+                data = {
+                    "composite_detail_id": composite_detail.id,
+                    "partner_id": self.id,
+                    "currency_id": composite_detail.currency_id.id,
+                    "amount": composite_detail.default_amount,
+                }
+                self.env["res_partner.default_risk_limit_composite_detail"].create(data)
