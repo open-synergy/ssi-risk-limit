@@ -183,24 +183,26 @@ class RiskLimitAssignment(models.Model):
         Detail = self.env["risk_limit_assignment.detail"]
         CompositeDetail = self.env["risk_limit_assignment.composite_detail"]
         for item in self.type_id.item_ids:
+            amount = item.get_amount(self.partner_id)
             Detail.create(
                 {
                     "assignment_id": self.id,
                     "item_id": item.item_id.id,
                     "currency_id": item.currency_id.id,
-                    "amount": item.default_amount,
+                    "amount": amount,
                     "restrict_single": item.restrict_single,
                 }
             )
 
         self.composite_detail_ids.unlink()
         for item in self.type_id.composite_item_ids:
+            amount = item.get_amount(self.partner_id)
             CompositeDetail.create(
                 {
                     "assignment_id": self.id,
                     "item_ids": [(6, 0, item.item_ids.ids)],
                     "currency_id": item.currency_id.id,
-                    "amount": item.default_amount,
+                    "amount": amount,
                 }
             )
 

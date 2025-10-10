@@ -13,4 +13,6 @@ from . import (
     risk_limit_assignment_composite_detail,
     partner_risk_limit,
     res_partner,
+    res_partner_default_risk_limit_detail,
+    res_partner_default_risk_limit_composite_detail,
 )
