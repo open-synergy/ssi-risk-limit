@@ -482,6 +482,16 @@ msgid ""
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:risk_limit_item,name:ssi_risk_limit.demo_risk_limit_item_draft_invoice
+msgid "Draft Invoice - (test)"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model:risk_limit_item,name:ssi_risk_limit.demo_risk_limit_item_due_invoice
+msgid "Due Invoice - (test)"
+msgstr ""
+
+#. module: ssi_risk_limit
 #: model_terms:ir.ui.view,arch_db:ssi_risk_limit.create_risk_limit_assignment_view_form
 msgid "Evaluate Partner"
 msgstr ""
@@ -521,6 +531,11 @@ msgstr ""
 #: model:ir.model.fields,help:ssi_risk_limit.field_risk_limit_item__activity_type_icon
 #: model:ir.model.fields,help:ssi_risk_limit.field_risk_limit_type__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model:risk_limit_type,name:ssi_risk_limit.demo_risk_limit_type_high_risk
+msgid "High Risk - (test)"
 msgstr ""
 
 #. module: ssi_risk_limit
@@ -671,6 +686,11 @@ msgid "Limit Min. Amount"
 msgstr ""
 
 #. module: ssi_risk_limit
+#: model:risk_limit_type,name:ssi_risk_limit.demo_risk_limit_type_low_risk
+msgid "Low Risk - (test)"
+msgstr ""
+
+#. module: ssi_risk_limit
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_assignment__message_main_attachment_id
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_batch_assignment__message_main_attachment_id
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_item__message_main_attachment_id
@@ -715,6 +735,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_type_composite_item__max_amount
 #: model:ir.model.fields,field_description:ssi_risk_limit.field_risk_limit_type_item__max_amount
 msgid "Max. Amount"
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model:risk_limit_type,name:ssi_risk_limit.demo_risk_limit_type_medium_risk
+msgid "Medium Risk - (test)"
 msgstr ""
 
 #. module: ssi_risk_limit
@@ -1184,6 +1209,11 @@ msgstr ""
 #: model:ir.model.fields,help:ssi_risk_limit.field_risk_limit_item__activity_exception_decoration
 #: model:ir.model.fields,help:ssi_risk_limit.field_risk_limit_type__activity_exception_decoration
 msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: ssi_risk_limit
+#: model:risk_limit_item,name:ssi_risk_limit.demo_risk_limit_item_unpaid_invoice
+msgid "Unpaid Invoice - (test)"
 msgstr ""
 
 #. module: ssi_risk_limit
