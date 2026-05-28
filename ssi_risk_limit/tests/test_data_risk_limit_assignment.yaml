@@ -1,0 +1,595 @@
+scenarios:
+  - name: "Risk Limit Item - Create Master Data"
+    steps:
+      - step: "Create risk limit item"
+        action: "create"
+        model: "risk_limit_item"
+        save_as: "item"
+        values:
+          name: "Test Risk Limit Item"
+          code: "TITEM001"
+
+      - step: "Assert item created"
+        action: "assert"
+        target: "item"
+        asserts:
+          name:
+            type: "value"
+            expected: "Test Risk Limit Item"
+          code:
+            type: "value"
+            expected: "TITEM001"
+
+  - name: "Risk Limit Type - Create Master Data with Items"
+    steps:
+      - step: "Create risk limit item"
+        action: "create"
+        model: "risk_limit_item"
+        save_as: "item"
+        values:
+          name: "Test Item For Type"
+          code: "TITEM002"
+
+      - step: "Create risk limit type"
+        action: "create"
+        model: "risk_limit_type"
+        save_as: "risk_type"
+        values:
+          name: "Test Risk Limit Type"
+          code: "TTYPE001"
+
+      - step: "Assert type created"
+        action: "assert"
+        target: "risk_type"
+        asserts:
+          name:
+            type: "value"
+            expected: "Test Risk Limit Type"
+
+      - step: "Create risk limit type item"
+        action: "create"
+        model: "risk_limit_type.item"
+        save_as: "type_item"
+        values:
+          type_id: "EVAL: registry['risk_type'].id"
+          item_id: "EVAL: registry['item'].id"
+          currency_id: "base.USD"
+          limit_min_amount: false
+          min_amount: 0.0
+          default_amount: 5000000.0
+          limit_max_amount: true
+          max_amount: 5000000.0
+
+      - step: "Assert type item created"
+        action: "assert"
+        target: "type_item"
+        asserts:
+          default_amount:
+            type: "value"
+            expected: 5000000.0
+
+  - name: "Risk Limit Assignment - Full Workflow: draft to done"
+    steps:
+      - step: "Setup - get assignment validator group"
+        action: "ref"
+        xml_id: "ssi_risk_limit.risk_limit_assignment_validator_group"
+        save_as: "asgmt_validator_group"
+
+      - step: "Setup - get assignment all data group"
+        action: "ref"
+        xml_id: "ssi_risk_limit.risk_limit_assignment_all"
+        save_as: "asgmt_all_group"
+
+      - step: "Setup - add admin to assignment validator group"
+        action: "write"
+        target: "asgmt_validator_group"
+        values:
+          users: "EVAL: [(4, env.ref('base.user_admin').id)]"
+
+      - step: "Setup - add admin to assignment all data group"
+        action: "write"
+        target: "asgmt_all_group"
+        values:
+          users: "EVAL: [(4, env.ref('base.user_admin').id)]"
+
+      - step: "Setup - create risk limit item"
+        action: "create"
+        model: "risk_limit_item"
+        save_as: "item"
+        values:
+          name: "Test Item Full Workflow"
+          code: "TITEM003"
+
+      - step: "Setup - create risk limit type"
+        action: "create"
+        model: "risk_limit_type"
+        save_as: "risk_type"
+        values:
+          name: "Test Type Full Workflow"
+          code: "TTYPE002"
+
+      - step: "Setup - create risk limit type item"
+        action: "create"
+        model: "risk_limit_type.item"
+        save_as: "type_item"
+        values:
+          type_id: "EVAL: registry['risk_type'].id"
+          item_id: "EVAL: registry['item'].id"
+          currency_id: "base.USD"
+          limit_min_amount: false
+          min_amount: 0.0
+          default_amount: 6000000.0
+          limit_max_amount: true
+          max_amount: 6000000.0
+
+      - step: "Setup - create partner"
+        action: "create"
+        model: "res.partner"
+        save_as: "partner"
+        values:
+          name: "Test Partner Full Workflow"
+
+      - step: "Create risk limit assignment"
+        action: "create"
+        model: "risk_limit_assignment"
+        save_as: "assignment"
+        as_user: "base.user_admin"
+        values:
+          date: "2025-01-01"
+          type_id: "EVAL: registry['risk_type'].id"
+          partner_id: "EVAL: registry['partner'].id"
+
+      - step: "Assert assignment created in draft"
+        action: "assert"
+        target: "assignment"
+        asserts:
+          state:
+            type: "value"
+            expected: "draft"
+
+      - step: "Confirm assignment"
+        action: "call"
+        target: "assignment"
+        method: "action_confirm"
+        as_user: "base.user_admin"
+        context:
+          bypass_policy_check: true
+        asserts:
+          state:
+            type: "value"
+            expected: "confirm"
+
+      - step: "Invalidate cache after confirm"
+        action: "call"
+        target: "assignment"
+        method: "invalidate_cache"
+
+      - step: "Approve assignment"
+        action: "call"
+        target: "assignment"
+        method: "action_approve_approval"
+        as_user: "base.user_admin"
+        context:
+          bypass_policy_check: true
+        asserts:
+          state:
+            type: "value"
+            expected: "open"
+
+      - step: "Invalidate cache after open"
+        action: "call"
+        target: "assignment"
+        method: "invalidate_cache"
+
+      - step: "Done assignment"
+        action: "call"
+        target: "assignment"
+        method: "action_done"
+        as_user: "base.user_admin"
+        context:
+          bypass_policy_check: true
+        asserts:
+          state:
+            type: "value"
+            expected: "done"
+
+  - name: "Risk Limit Assignment - Cancel and Restart Workflow"
+    steps:
+      - step: "Setup - get assignment validator group"
+        action: "ref"
+        xml_id: "ssi_risk_limit.risk_limit_assignment_validator_group"
+        save_as: "asgmt_validator_group"
+
+      - step: "Setup - get assignment all data group"
+        action: "ref"
+        xml_id: "ssi_risk_limit.risk_limit_assignment_all"
+        save_as: "asgmt_all_group"
+
+      - step: "Setup - add admin to assignment validator group"
+        action: "write"
+        target: "asgmt_validator_group"
+        values:
+          users: "EVAL: [(4, env.ref('base.user_admin').id)]"
+
+      - step: "Setup - add admin to assignment all data group"
+        action: "write"
+        target: "asgmt_all_group"
+        values:
+          users: "EVAL: [(4, env.ref('base.user_admin').id)]"
+
+      - step: "Setup - create risk limit item"
+        action: "create"
+        model: "risk_limit_item"
+        save_as: "item"
+        values:
+          name: "Test Item Cancel Workflow"
+          code: "TITEM004"
+
+      - step: "Setup - create risk limit type"
+        action: "create"
+        model: "risk_limit_type"
+        save_as: "risk_type"
+        values:
+          name: "Test Type Cancel Workflow"
+          code: "TTYPE003"
+
+      - step: "Setup - create partner"
+        action: "create"
+        model: "res.partner"
+        save_as: "partner"
+        values:
+          name: "Test Partner Cancel Workflow"
+
+      - step: "Create risk limit assignment"
+        action: "create"
+        model: "risk_limit_assignment"
+        save_as: "assignment"
+        as_user: "base.user_admin"
+        values:
+          date: "2025-01-01"
+          type_id: "EVAL: registry['risk_type'].id"
+          partner_id: "EVAL: registry['partner'].id"
+
+      - step: "Confirm assignment"
+        action: "call"
+        target: "assignment"
+        method: "action_confirm"
+        as_user: "base.user_admin"
+        context:
+          bypass_policy_check: true
+
+      - step: "Invalidate cache after confirm"
+        action: "call"
+        target: "assignment"
+        method: "invalidate_cache"
+
+      - step: "Cancel assignment"
+        action: "call"
+        target: "assignment"
+        method: "action_cancel"
+        as_user: "base.user_admin"
+        context:
+          bypass_policy_check: true
+        asserts:
+          state:
+            type: "value"
+            expected: "cancel"
+
+      - step: "Invalidate cache after cancel"
+        action: "call"
+        target: "assignment"
+        method: "invalidate_cache"
+
+      - step: "Restart assignment"
+        action: "call"
+        target: "assignment"
+        method: "action_restart"
+        as_user: "base.user_admin"
+        context:
+          bypass_policy_check: true
+        asserts:
+          state:
+            type: "value"
+            expected: "draft"
+
+  - name: "Risk Limit Batch Assignment - Full Workflow: draft to done"
+    steps:
+      - step: "Setup - get assignment validator group"
+        action: "ref"
+        xml_id: "ssi_risk_limit.risk_limit_assignment_validator_group"
+        save_as: "asgmt_validator_group"
+
+      - step: "Setup - get assignment all data group"
+        action: "ref"
+        xml_id: "ssi_risk_limit.risk_limit_assignment_all"
+        save_as: "asgmt_all_group"
+
+      - step: "Setup - get batch validator group"
+        action: "ref"
+        xml_id: "ssi_risk_limit.risk_limit_batch_assignment_validator_group"
+        save_as: "batch_validator_group"
+
+      - step: "Setup - get batch all data group"
+        action: "ref"
+        xml_id: "ssi_risk_limit.risk_limit_batch_assignment_all"
+        save_as: "batch_all_group"
+
+      - step: "Setup - add admin to assignment validator group"
+        action: "write"
+        target: "asgmt_validator_group"
+        values:
+          users: "EVAL: [(4, env.ref('base.user_admin').id)]"
+
+      - step: "Setup - add admin to assignment all data group"
+        action: "write"
+        target: "asgmt_all_group"
+        values:
+          users: "EVAL: [(4, env.ref('base.user_admin').id)]"
+
+      - step: "Setup - add admin to batch validator group"
+        action: "write"
+        target: "batch_validator_group"
+        values:
+          users: "EVAL: [(4, env.ref('base.user_admin').id)]"
+
+      - step: "Setup - add admin to batch all data group"
+        action: "write"
+        target: "batch_all_group"
+        values:
+          users: "EVAL: [(4, env.ref('base.user_admin').id)]"
+
+      - step: "Setup - create risk limit type"
+        action: "create"
+        model: "risk_limit_type"
+        save_as: "risk_type"
+        values:
+          name: "Test Type Batch Workflow"
+          code: "TTYPE004"
+
+      - step: "Setup - create partner"
+        action: "create"
+        model: "res.partner"
+        save_as: "partner"
+        values:
+          name: "Test Partner Batch Workflow"
+
+      - step: "Create risk limit batch assignment"
+        action: "create"
+        model: "risk_limit_batch_assignment"
+        save_as: "batch"
+        as_user: "base.user_admin"
+        values:
+          date: "2025-01-01"
+          type_id: "EVAL: registry['risk_type'].id"
+
+      - step: "Assert batch created in draft"
+        action: "assert"
+        target: "batch"
+        asserts:
+          state:
+            type: "value"
+            expected: "draft"
+
+      - step: "Write partner to batch"
+        action: "write"
+        target: "batch"
+        values:
+          partner_ids:
+            - "EVAL: registry['partner'].id"
+
+      - step: "Confirm batch"
+        action: "call"
+        target: "batch"
+        method: "action_confirm"
+        as_user: "base.user_admin"
+        context:
+          bypass_policy_check: true
+        asserts:
+          state:
+            type: "value"
+            expected: "confirm"
+
+      - step: "Invalidate cache after batch confirm"
+        action: "call"
+        target: "batch"
+        method: "invalidate_cache"
+
+      - step: "Approve batch - creates assignments"
+        action: "call"
+        target: "batch"
+        method: "action_approve_approval"
+        as_user: "base.user_admin"
+        context:
+          bypass_policy_check: true
+        asserts:
+          state:
+            type: "value"
+            expected: "open"
+
+      - step: "Invalidate cache after batch open"
+        action: "call"
+        target: "batch"
+        method: "invalidate_cache"
+
+      - step: "Done batch - processes assignments"
+        action: "call"
+        target: "batch"
+        method: "action_done"
+        as_user: "base.user_admin"
+        context:
+          bypass_policy_check: true
+        asserts:
+          state:
+            type: "value"
+            expected: "done"
+
+  - name: "Risk Limit Assignment - Compute Items with Model"
+    steps:
+      - step: "Setup - get assignment validator group"
+        action: "ref"
+        xml_id: "ssi_risk_limit.risk_limit_assignment_validator_group"
+        save_as: "asgmt_validator_group"
+
+      - step: "Setup - get assignment all data group"
+        action: "ref"
+        xml_id: "ssi_risk_limit.risk_limit_assignment_all"
+        save_as: "asgmt_all_group"
+
+      - step: "Setup - add admin to assignment validator group"
+        action: "write"
+        target: "asgmt_validator_group"
+        values:
+          users: "EVAL: [(4, env.ref('base.user_admin').id)]"
+
+      - step: "Setup - add admin to assignment all data group"
+        action: "write"
+        target: "asgmt_all_group"
+        values:
+          users: "EVAL: [(4, env.ref('base.user_admin').id)]"
+
+      - step: "Find account.move model"
+        action: "search"
+        model: "ir.model"
+        domain:
+          - ["model", "=", "account.move"]
+        save_as: "aml_model"
+        limit: 1
+
+      - step: "Find partner_id field on account.move"
+        action: "search"
+        model: "ir.model.fields"
+        domain:
+          - ["model_id", "=", "EVAL: registry['aml_model'].id"]
+          - ["name", "=", "partner_id"]
+        save_as: "aml_partner_field"
+        limit: 1
+
+      - step: "Find amount_total field on account.move"
+        action: "search"
+        model: "ir.model.fields"
+        domain:
+          - ["model_id", "=", "EVAL: registry['aml_model'].id"]
+          - ["name", "=", "amount_total"]
+        save_as: "aml_amount_field"
+        limit: 1
+
+      - step: "Create risk limit item with model"
+        action: "create"
+        model: "risk_limit_item"
+        save_as: "item"
+        values:
+          name: "Test Item Compute"
+          code: "TITEM006"
+          model_id: "EVAL: registry['aml_model'].id"
+          partner_field_id: "EVAL: registry['aml_partner_field'].id"
+          amount_field_id: "EVAL: registry['aml_amount_field'].id"
+          domain: "[]"
+
+      - step: "Create risk limit type"
+        action: "create"
+        model: "risk_limit_type"
+        save_as: "risk_type"
+        values:
+          name: "Test Type Compute"
+          code: "TTYPE005"
+
+      - step: "Create risk limit type item"
+        action: "create"
+        model: "risk_limit_type.item"
+        save_as: "type_item"
+        values:
+          type_id: "EVAL: registry['risk_type'].id"
+          item_id: "EVAL: registry['item'].id"
+          currency_id: "base.USD"
+          limit_min_amount: false
+          min_amount: 0.0
+          default_amount: 7000000.0
+          limit_max_amount: false
+          max_amount: 0.0
+
+      - step: "Create risk limit type composite item"
+        action: "create"
+        model: "risk_limit_type.composite_item"
+        save_as: "type_composite_item"
+        values:
+          type_id: "EVAL: registry['risk_type'].id"
+          item_ids:
+            - "EVAL: registry['item'].id"
+          currency_id: "base.USD"
+          limit_min_amount: false
+          min_amount: 0.0
+          default_amount: 7000000.0
+          limit_max_amount: false
+          max_amount: 0.0
+
+      - step: "Create partner for compute test"
+        action: "create"
+        model: "res.partner"
+        save_as: "partner"
+        values:
+          name: "Test Partner Compute"
+
+      - step: "Create risk limit assignment"
+        action: "create"
+        model: "risk_limit_assignment"
+        save_as: "assignment"
+        as_user: "base.user_admin"
+        values:
+          date: "2025-01-01"
+          type_id: "EVAL: registry['risk_type'].id"
+          partner_id: "EVAL: registry['partner'].id"
+
+      - step: "Confirm assignment"
+        action: "call"
+        target: "assignment"
+        method: "action_confirm"
+        as_user: "base.user_admin"
+        context:
+          bypass_policy_check: true
+
+      - step: "Invalidate cache after confirm"
+        action: "call"
+        target: "assignment"
+        method: "invalidate_cache"
+
+      - step: "Approve assignment"
+        action: "call"
+        target: "assignment"
+        method: "action_approve_approval"
+        as_user: "base.user_admin"
+        context:
+          bypass_policy_check: true
+
+      - step: "Invalidate cache after open"
+        action: "call"
+        target: "assignment"
+        method: "invalidate_cache"
+
+      - step: "Compute assignment items"
+        action: "call"
+        target: "assignment"
+        method: "action_compute_item"
+        as_user: "base.user_admin"
+
+      - step: "Invalidate cache after compute item"
+        action: "call"
+        target: "assignment"
+        method: "invalidate_cache"
+
+      - step: "Compute assignment amounts"
+        action: "call"
+        target: "assignment"
+        method: "action_compute_amount"
+        as_user: "base.user_admin"
+
+      - step: "Done assignment"
+        action: "call"
+        target: "assignment"
+        method: "action_done"
+        as_user: "base.user_admin"
+        context:
+          bypass_policy_check: true
+        asserts:
+          state:
+            type: "value"
+            expected: "done"
