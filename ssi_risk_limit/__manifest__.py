@@ -4,7 +4,7 @@
 
 {
     "name": "Risk Limit",
-    "version": "14.0.3.4.0",
+    "version": "14.0.3.5.0",
     "author": "OpenSynergy Indonesia, PT. Simetri Sinergi Indonesia",
     "website": "https://simetri-sinergi.id",
     "license": "AGPL-3",
